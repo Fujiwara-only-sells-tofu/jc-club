@@ -6,7 +6,7 @@ import com.jcclub.subject.domain.convert.SubjectCategoryConverter;
 import com.jcclub.subject.domain.entity.SubjectCategoryBO;
 import com.jcclub.subject.domain.service.SubjectCategoryDomainService;
 import com.jcclub.subject.infra.basic.entity.SubjectCategory;
-import com.jcclub.subject.infra.basic.service.SubjectCategoryService;
+import com.jcclub.subject.infra.basic.service.ISubjectCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainService {
 
-    private final SubjectCategoryService subjectCategoryService;
+    private final ISubjectCategoryService subjectCategoryService;
 
     @Override
     public void add(SubjectCategoryBO subjectCategoryBO) {

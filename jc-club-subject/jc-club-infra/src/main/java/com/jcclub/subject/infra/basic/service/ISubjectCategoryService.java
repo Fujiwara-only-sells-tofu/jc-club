@@ -9,7 +9,7 @@ import com.jcclub.subject.infra.basic.entity.SubjectCategory;
  * @author makejava
  * @since 2024-09-28 13:55:50
  */
-public interface SubjectCategoryService extends IService<SubjectCategory> {
+public interface ISubjectCategoryService extends IService<SubjectCategory> {
 
 
 

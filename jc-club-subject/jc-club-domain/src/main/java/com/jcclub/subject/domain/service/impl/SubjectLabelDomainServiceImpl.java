@@ -6,8 +6,8 @@ import com.jcclub.subject.domain.entity.SubjectLabelBO;
 import com.jcclub.subject.domain.service.SubjectLabelDomainService;
 import com.jcclub.subject.infra.basic.entity.SubjectLabel;
 import com.jcclub.subject.infra.basic.entity.SubjectMapping;
-import com.jcclub.subject.infra.basic.service.SubjectLabelService;
-import com.jcclub.subject.infra.basic.service.SubjectMappingService;
+import com.jcclub.subject.infra.basic.service.ISubjectLabelService;
+import com.jcclub.subject.infra.basic.service.ISubjectMappingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService {
 
-    private final SubjectLabelService subjectLabelService;
+    private final ISubjectLabelService subjectLabelService;
 
-    private final SubjectMappingService subjectMappingService;
+    private final ISubjectMappingService subjectMappingService;
 
     @Override
     public Boolean add(SubjectLabelBO subjectLabelBO) {
