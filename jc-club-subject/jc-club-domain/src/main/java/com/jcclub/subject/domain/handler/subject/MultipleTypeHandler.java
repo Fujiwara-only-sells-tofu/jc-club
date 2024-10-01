@@ -3,7 +3,9 @@ package com.jcclub.subject.domain.handler.subject;
 import com.jcclub.subject.common.enums.IsDeletedFlagEnum;
 import com.jcclub.subject.common.enums.SubjectInfoTypeEnum;
 import com.jcclub.subject.domain.convert.MultipleSubjectConverter;
+import com.jcclub.subject.domain.entity.SubjectAnswerBO;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.domain.entity.SubjectOptionBO;
 import com.jcclub.subject.infra.basic.entity.SubjectMultiple;
 import com.jcclub.subject.infra.basic.service.ISubjectMultipleService;
 import lombok.RequiredArgsConstructor;
@@ -41,5 +43,15 @@ public class MultipleTypeHandler implements SubjectTypeHandler{
             subjectMultipleList.add(subjectMultiple);
         });
         subjectMultipleService.saveBatch(subjectMultipleList);
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+
+        List<SubjectMultiple> list = subjectMultipleService.lambdaQuery().eq(SubjectMultiple::getSubjectId, subjectId).list();
+        List<SubjectAnswerBO> subjectAnswerBOList = MultipleSubjectConverter.INSTANCE.convertEntityToBoList(list);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

@@ -3,6 +3,7 @@ package com.jcclub.subject.application.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.jcclub.subject.common.entity.PageInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,7 +24,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("subject_info")
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -81,8 +82,24 @@ public class SubjectInfoDTO implements Serializable {
 
 
     /**
+     * 标签id
+     */
+    private List<String> labelName;
+
+    /**
      * 答案选项
      */
     private List<SubjectAnswerDTO> optionList;
+
+    /**
+     * 分类id
+     */
+    private Long categoryId;
+
+    /**
+     * 标签id
+     */
+    private Long labelId;
+
 
 }

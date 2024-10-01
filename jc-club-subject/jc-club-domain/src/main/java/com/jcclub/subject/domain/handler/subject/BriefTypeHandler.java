@@ -4,6 +4,7 @@ import com.jcclub.subject.common.enums.IsDeletedFlagEnum;
 import com.jcclub.subject.common.enums.SubjectInfoTypeEnum;
 import com.jcclub.subject.domain.convert.BriefSubjectConverter;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.domain.entity.SubjectOptionBO;
 import com.jcclub.subject.infra.basic.entity.SubjectBrief;
 import com.jcclub.subject.infra.basic.service.ISubjectBriefService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BriefTypeHandler implements SubjectTypeHandler{
 
+
     private final ISubjectBriefService subjectBriefService;
 
     @Override
@@ -33,5 +35,13 @@ public class BriefTypeHandler implements SubjectTypeHandler{
         subjectBrief.setSubjectId(subjectInfoBO.getId().intValue());
         subjectBrief.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         subjectBriefService.save(subjectBrief);
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+        SubjectBrief subjectBrief = subjectBriefService.lambdaQuery().eq(SubjectBrief::getSubjectId, subjectId).one();
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setSubjectAnswer(subjectBrief.getSubjectAnswer());
+        return subjectOptionBO;
     }
 }

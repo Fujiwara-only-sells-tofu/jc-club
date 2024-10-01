@@ -17,4 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubjectBriefServiceImpl extends ServiceImpl<SubjectBriefMapper, SubjectBrief> implements ISubjectBriefService {
 
+
+
 }

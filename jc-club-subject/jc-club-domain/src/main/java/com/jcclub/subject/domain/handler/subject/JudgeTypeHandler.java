@@ -2,12 +2,16 @@ package com.jcclub.subject.domain.handler.subject;
 
 import com.jcclub.subject.common.enums.IsDeletedFlagEnum;
 import com.jcclub.subject.common.enums.SubjectInfoTypeEnum;
+import com.jcclub.subject.domain.convert.JudgeSubjectConverter;
 import com.jcclub.subject.domain.entity.SubjectAnswerBO;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.domain.entity.SubjectOptionBO;
 import com.jcclub.subject.infra.basic.entity.SubjectJudge;
 import com.jcclub.subject.infra.basic.service.ISubjectJudgeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @ClassName：RadioTypeHandler
@@ -36,5 +40,15 @@ public class JudgeTypeHandler implements SubjectTypeHandler{
         subjectJudge.setIsCorrect(subjectAnswerBO.getIsCorrect());
         subjectJudge.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         subjectJudgeService.save(subjectJudge);
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+
+        List<SubjectJudge> list = subjectJudgeService.lambdaQuery().eq(SubjectJudge::getSubjectId, subjectId).list();
+        List<SubjectAnswerBO> subjectAnswerBOList = JudgeSubjectConverter.INSTANCE.convertEntityToBoList(list);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

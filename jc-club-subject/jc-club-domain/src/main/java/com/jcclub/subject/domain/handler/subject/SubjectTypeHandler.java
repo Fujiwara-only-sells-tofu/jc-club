@@ -2,6 +2,7 @@ package com.jcclub.subject.domain.handler.subject;
 
 import com.jcclub.subject.common.enums.SubjectInfoTypeEnum;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.domain.entity.SubjectOptionBO;
 
 /**
  * @ClassName：SubjectTypeHandler
@@ -33,4 +34,6 @@ public interface SubjectTypeHandler {
      */
 
     void add(SubjectInfoBO subjectInfoBO);
+
+    SubjectOptionBO query(int subjectId);
 }

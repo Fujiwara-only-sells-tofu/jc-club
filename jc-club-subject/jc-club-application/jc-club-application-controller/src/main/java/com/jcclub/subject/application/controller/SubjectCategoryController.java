@@ -34,7 +34,7 @@ public class SubjectCategoryController {
         try {
             Preconditions.checkNotNull(subjectCategoryDTO.getCategoryType(), "分类类型不能为空");
             Preconditions.checkArgument(!StringUtils.isBlank(subjectCategoryDTO.getCategoryName()), "分类名称不能为空");
-            Preconditions.checkNotNull(subjectCategoryDTO.getId(), "id不能为空");
+            //Preconditions.checkNotNull(subjectCategoryDTO.getId(), "id不能为空");
 
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToCategoryBO(subjectCategoryDTO);
             subjectCategoryDomainService.add(subjectCategoryBO);

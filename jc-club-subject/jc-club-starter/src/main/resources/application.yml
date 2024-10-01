@@ -35,3 +35,7 @@ logging:
     com.jcclub: debug
   pattern:
     dateformat: HH:mm:ss:SSS
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -2,13 +2,19 @@ package com.jcclub.subject.domain.handler.subject;
 
 import cn.hutool.core.collection.CollUtil;
 import com.jcclub.subject.common.enums.SubjectInfoTypeEnum;
+import com.jcclub.subject.domain.convert.RadioSubjectConverter;
 import com.jcclub.subject.domain.convert.SubjectRadioConverter;
+import com.jcclub.subject.domain.entity.SubjectAnswerBO;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.domain.entity.SubjectOptionBO;
 import com.jcclub.subject.infra.basic.entity.SubjectRadio;
 import com.jcclub.subject.infra.basic.service.ISubjectRadioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @ClassName：RadioTypeHandler
@@ -17,9 +23,11 @@ import java.util.LinkedList;
  * @Description: 单选的题目策略
  */
 @Component
+@RequiredArgsConstructor
 public class RadioTypeHandler implements SubjectTypeHandler{
 
-    private ISubjectRadioService subjectRadioService;
+
+    private final ISubjectRadioService subjectRadioService;
 
     @Override
     public SubjectInfoTypeEnum getHandlerType() {
@@ -39,5 +47,16 @@ public class RadioTypeHandler implements SubjectTypeHandler{
             subjectRadios.add(subjectRadio);
         });
         subjectRadioService.saveBatch(subjectRadios);
+    }
+
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+
+        List<SubjectRadio> list = subjectRadioService.lambdaQuery().eq(SubjectRadio::getSubjectId, subjectId).list();
+        List<SubjectAnswerBO> subjectAnswerBOList = RadioSubjectConverter.INSTANCE.convertEntityToBoList(list);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }
