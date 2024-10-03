@@ -1,0 +1,8 @@
+server:
+  port: 3001
+
+minio:
+  url: http://192.168.174.100:9000
+  access-key: minioadmin
+  secret-key: minioadmin
+

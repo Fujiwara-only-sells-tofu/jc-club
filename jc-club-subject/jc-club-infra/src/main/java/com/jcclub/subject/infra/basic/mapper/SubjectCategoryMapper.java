@@ -2,6 +2,8 @@ package com.jcclub.subject.infra.basic.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jcclub.subject.infra.basic.entity.SubjectCategory;
+import org.apache.ibatis.annotations.Mapper;
+
 
 /**
  * 题目分类(SubjectCategory)表数据库访问层
@@ -9,7 +11,7 @@ import com.jcclub.subject.infra.basic.entity.SubjectCategory;
  * @author makejava
  * @since 2024-09-28 13:55:44
  */
-//@Mapper
+
 public interface SubjectCategoryMapper extends BaseMapper<SubjectCategory> {
 
 

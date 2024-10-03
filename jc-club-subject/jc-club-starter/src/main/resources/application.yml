@@ -31,11 +31,6 @@ spring:
 publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIUYd0k3qqMxv4FWfpjAYjEzEmWeUtCQfq3KfNP0/BNsa4Jk7y+tfORmDTLX3fzwItoz0itkAtbB6PAO0pVFJl8CAwEAAQ==
 
 logging:
-  level:
-    com.jcclub: debug
-  pattern:
-    dateformat: HH:mm:ss:SSS
+  config: classpath:log4j2-spring.xml
 
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
