@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping
 @Slf4j
 @RequiredArgsConstructor
 public class FileController {

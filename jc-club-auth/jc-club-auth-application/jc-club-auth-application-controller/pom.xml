@@ -23,6 +23,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.4.2</version>
         </dependency>
+        <!--Sa-token 权限认证-->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot-starter</artifactId>
+            <version>1.39.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.jcclub</groupId>
             <artifactId>jc-club-auth-infra</artifactId>
@@ -33,6 +40,9 @@
             <artifactId>jc-club-auth-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
+
+
 
 </project>

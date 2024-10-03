@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jc-club-oss
+    name: jc-club-auth
   profiles:
     active: dev
   cloud:
@@ -11,10 +11,6 @@ spring:
         group: DEFAULT_GROUP
         namespace:
         file-extension: yaml
-        access-key: nacos
-        secret-key: nacos
-        refresh-enabled: true
-        import-check:
-          enabled: true
       discovery:
+        enabled: true
         server-addr: http://192.168.174.100:8848

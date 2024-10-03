@@ -1,0 +1,14 @@
+server:
+  port: 3003
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: oss
+          uri: lb://jc-club-oss
+          predicates:
+            - Path=/oss/**
+          filters:
+            - StripPrefix=1
+
+
