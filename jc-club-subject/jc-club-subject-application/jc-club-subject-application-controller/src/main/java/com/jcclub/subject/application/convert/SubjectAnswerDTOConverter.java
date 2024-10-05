@@ -2,9 +2,7 @@ package com.jcclub.subject.application.convert;
 
 
 import com.jcclub.subject.application.dto.SubjectAnswerDTO;
-import com.jcclub.subject.application.dto.SubjectInfoDTO;
 import com.jcclub.subject.domain.entity.SubjectAnswerBO;
-import com.jcclub.subject.domain.entity.SubjectInfoBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
