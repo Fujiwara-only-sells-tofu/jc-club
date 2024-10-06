@@ -1,0 +1,13 @@
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\dto\AuthRolePermissionDTO.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\dto\AuthUserDTO.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\controller\RoleController.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\convert\AuthPermissionDTOConverter.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\config\GlobalConfig.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\controller\PermissionController.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\controller\RolePermissionController.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\dto\AuthPermissionDTO.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\dto\AuthRoleDTO.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\convert\AuthRolePermissionDTOConverter.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\convert\AuthRoleDTOConverter.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\controller\UserController.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-auth\jc-club-auth-application\jc-club-auth-application-controller\src\main\java\com\jcclub\auth\application\controller\convert\AuthUserDTOConverter.java

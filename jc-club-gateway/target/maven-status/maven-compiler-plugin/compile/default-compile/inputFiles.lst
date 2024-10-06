@@ -1,0 +1,10 @@
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\entity\AuthPermission.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\redis\RedisConfig.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\enums\ResultCodeEnum.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\entity\AuthRole.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\entity\Result.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\auth\SaTokenConfigure.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\exception\GatewayExceptionHandler.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\auth\StpInterfaceImpl.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\GatewayApplication.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-gateway\src\main\java\com\jcclub\gateway\redis\RedisUtil.java

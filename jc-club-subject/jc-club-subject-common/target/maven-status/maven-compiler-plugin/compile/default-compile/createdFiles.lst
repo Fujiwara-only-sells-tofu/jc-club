@@ -1,0 +1,8 @@
+com\jcclub\subject\common\entity\PageResult.class
+com\jcclub\subject\common\entity\SubjectPageQuery.class
+com\jcclub\subject\common\enums\IsDeletedFlagEnum.class
+com\jcclub\subject\common\entity\PageInfo.class
+com\jcclub\subject\common\enums\SubjectInfoTypeEnum.class
+com\jcclub\subject\common\entity\Result.class
+com\jcclub\subject\common\enums\CategoryTypeEnum.class
+com\jcclub\subject\common\enums\ResultCodeEnum.class

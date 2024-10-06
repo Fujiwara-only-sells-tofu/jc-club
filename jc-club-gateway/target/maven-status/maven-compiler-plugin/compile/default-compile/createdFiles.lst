@@ -1,0 +1,12 @@
+com\jcclub\gateway\entity\AuthRole.class
+com\jcclub\gateway\auth\StpInterfaceImpl$2.class
+com\jcclub\gateway\auth\StpInterfaceImpl$1.class
+com\jcclub\gateway\redis\RedisConfig.class
+com\jcclub\gateway\exception\GatewayExceptionHandler.class
+com\jcclub\gateway\entity\Result.class
+com\jcclub\gateway\auth\SaTokenConfigure.class
+com\jcclub\gateway\redis\RedisUtil.class
+com\jcclub\gateway\entity\AuthPermission.class
+com\jcclub\gateway\GatewayApplication.class
+com\jcclub\gateway\auth\StpInterfaceImpl.class
+com\jcclub\gateway\enums\ResultCodeEnum.class

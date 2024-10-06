@@ -1,0 +1,13 @@
+com\jcclub\oss\config\StorageConfig.class
+com\jcclub\oss\adapter\MinioStorageAdapter.class
+com\jcclub\oss\adapter\ALiStorageAdapter.class
+com\jcclub\oss\adapter\StorageAdapter.class
+com\jcclub\oss\OssApplication.class
+com\jcclub\oss\config\MinioConfig.class
+com\jcclub\oss\entity\FIleInfo.class
+com\jcclub\oss\utils\MinioUtil.class
+com\jcclub\oss\entity\Result.class
+com\jcclub\oss\entity\ResultCodeEnum.class
+com\jcclub\oss\service\FIleService.class
+com\jcclub\oss\controller\FileController.class
+com\jcclub\oss\config\StorageConfigProperties.class

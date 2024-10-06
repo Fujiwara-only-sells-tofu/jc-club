@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: jc-club-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: http://192.168.174.100:8848
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+        namespace:
+        file-extension: yaml
+        access-key: nacos
+        secret-key: nacos
+        refresh-enabled: true
+        import-check:
+          enabled: true
+      discovery:
+        server-addr: http://192.168.174.100:8848
