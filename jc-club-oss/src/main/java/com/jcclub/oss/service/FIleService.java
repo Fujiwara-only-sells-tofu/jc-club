@@ -2,6 +2,7 @@ package com.jcclub.oss.service;
 
 import com.jcclub.oss.adapter.StorageAdapter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,17 +24,23 @@ public class FIleService {
 
 
     /**
-     * @Description: 查询所有bucket名字
-     * @data:[bucketName]
-     * @return: void
-     * @Author: ZCY
-     * @Date: 2024-10-02 21:05:28
+     * 列出所有桶
      */
-
-    public List<String> getAllBucket(){
+    public List<String> getAllBucket() {
         return storageAdapter.getAllBucket();
     }
 
+    /**
+     * 获取文件路径
+     */
+    public String getUrl(String bucketName,String objectName) {
+        return storageAdapter.getUrl(bucketName,objectName);
+    }
 
 
+    public String uploadFile(MultipartFile uploadFile, String bucket, String objectName){
+        storageAdapter.uploadFile(uploadFile,bucket,objectName);
+        objectName = objectName + "/" + uploadFile.getOriginalFilename();
+        return storageAdapter.getUrl(bucket, objectName);
+    }
 }

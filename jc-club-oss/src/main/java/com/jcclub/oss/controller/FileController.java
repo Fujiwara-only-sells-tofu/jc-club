@@ -1,16 +1,14 @@
 package com.jcclub.oss.controller;
 
-import cn.hutool.core.collection.CollUtil;
 import com.jcclub.oss.config.StorageConfigProperties;
+import com.jcclub.oss.entity.Result;
 import com.jcclub.oss.service.FIleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,29 +19,29 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping
 @Slf4j
 @RequiredArgsConstructor
 public class FileController {
 
-    private final FIleService fIleService;
+    private final FIleService fileService;
 
-
-    private final StorageConfigProperties storage;
-    @GetMapping("/test")
-    public String test() throws Exception {
-        List<String> allBucket = fIleService.getAllBucket();
-        if(CollUtil.isEmpty(allBucket)){
-            return "no bucket";
-
-        }
-        return "bucket:" + allBucket.toString();
+    @RequestMapping("/testGetAllBuckets")
+    public String testGetAllBuckets() throws Exception {
+        List<String> allBucket = fileService.getAllBucket();
+        return allBucket.get(0);
     }
 
+    @RequestMapping("/getUrl")
+    public String getUrl(String bucketName, String objectName) throws Exception {
+        return fileService.getUrl(bucketName, objectName);
+    }
 
-    @GetMapping("/testNacos")
-    public String testNacos(){
-
-        return storage.getType();
+    /**
+     * 上传文件
+     */
+    @RequestMapping("/upload")
+    public Result upload(MultipartFile uploadFile, String bucket, String objectName) throws Exception {
+        String url = fileService.uploadFile(uploadFile, bucket, objectName);
+        return Result.ok(url);
     }
 }

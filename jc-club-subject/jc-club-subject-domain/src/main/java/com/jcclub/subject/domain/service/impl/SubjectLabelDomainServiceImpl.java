@@ -31,6 +31,13 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
     @Override
     public Boolean add(SubjectLabelBO subjectLabelBO) {
+        Integer count = subjectLabelService.lambdaQuery()
+                .eq(SubjectLabel::getLabelName, subjectLabelBO.getLabelName())
+                .eq(SubjectLabel::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
+                .count();
+        if(count > 0){
+            throw new RuntimeException("该标签名称已经存在");
+        }
         SubjectLabel subjectLabel = SubjectLabelConverter.INSTANCE.convertBoToLabel(subjectLabelBO);
         boolean result = subjectLabelService.save(subjectLabel);
         return result;
@@ -45,6 +52,20 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
     @Override
     public Boolean delete(SubjectLabelBO subjectLabelBO) {
+        Integer count = subjectLabelService.lambdaQuery()
+                .eq(SubjectLabel::getId, subjectLabelBO.getId())
+                .eq(SubjectLabel::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
+                .count();
+        if(count <= 0){
+            throw new RuntimeException("标签不存在,无法删除！");
+        }
+        Integer mappingCount = subjectMappingService.lambdaQuery()
+                .eq(SubjectMapping::getLabelId, subjectLabelBO.getId())
+                .eq(SubjectMapping::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
+                .count();
+        if(mappingCount>0){
+            throw new RuntimeException("该标签下存在关联的题目，无法删除！");
+        }
         SubjectLabel subjectLabel = SubjectLabelConverter.INSTANCE.convertBoToLabel(subjectLabelBO);
         subjectLabel.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
         boolean result = subjectLabelService.updateById(subjectLabel);

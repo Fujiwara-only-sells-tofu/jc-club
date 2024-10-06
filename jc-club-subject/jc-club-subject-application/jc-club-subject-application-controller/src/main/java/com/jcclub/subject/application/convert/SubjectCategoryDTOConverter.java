@@ -22,9 +22,13 @@ public interface SubjectCategoryDTOConverter {
 
     SubjectCategoryBO convertDtoToCategoryBO(SubjectCategoryDTO subjectCategoryDTO);
 
+    SubjectCategoryDTO convertBoToCategoryDTO(SubjectCategoryBO subjectCategoryBO);
+
 
 
     List<SubjectCategoryDTO> convertToCategoryDTOList(List<SubjectCategoryBO> subjectCategoryBOList);
+
+
 
 
 

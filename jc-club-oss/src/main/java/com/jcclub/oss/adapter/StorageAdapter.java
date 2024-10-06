@@ -16,8 +16,6 @@ import java.util.List;
 public interface StorageAdapter {
 
 
-
-
     /**
      * @Description: 创建bucket
      * @data:[bucketName]
@@ -72,7 +70,6 @@ public interface StorageAdapter {
     InputStream downLoad(String bucket, String objectName);
 
 
-
     /**
      * @Description: 删除bucket
      * @data:[bucket]
@@ -91,5 +88,7 @@ public interface StorageAdapter {
      * @Date: 2024-10-02 21:26:38
      */
 
-    void deleteObject(String bucket, String objectName) ;
+    void deleteObject(String bucket, String objectName);
+
+    String getUrl(String bucket, String objectName);
 }

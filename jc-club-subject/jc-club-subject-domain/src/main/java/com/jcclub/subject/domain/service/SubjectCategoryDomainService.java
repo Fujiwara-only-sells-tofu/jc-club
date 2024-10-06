@@ -30,4 +30,14 @@ public interface SubjectCategoryDomainService {
      */
 
     Boolean delete(SubjectCategoryBO subjectCategoryBO);
+
+    /**
+     * @Description:查询分类及标签一次性
+     * @data:[subjectCategoryBO]
+     * @return: java.util.List<com.jcclub.subject.domain.entity.SubjectCategoryBO>
+     * @Author: ZCY
+     * @Date: 2024-10-05 20:32:58
+     */
+
+    List<SubjectCategoryBO> queryCategoryAndLabel(SubjectCategoryBO subjectCategoryBO);
 }

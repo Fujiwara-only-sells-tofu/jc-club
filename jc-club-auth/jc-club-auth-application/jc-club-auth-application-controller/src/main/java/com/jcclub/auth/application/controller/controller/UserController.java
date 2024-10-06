@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -74,9 +74,6 @@ public class UserController {
         log.info("更新用户信息,参数为{}",authUserDTO);
         try {
             Preconditions.checkArgument(authUserDTO.getId() != null, "用户id不能为空");
-            //Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "用户名称不能为空");
-            //Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getEmail()), "邮件地址不能为空");
-
 
             AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.authUserDTOtoBO(authUserDTO);
             Boolean result= authUserDomainService.update(authUserBO);
@@ -88,10 +85,43 @@ public class UserController {
         }
 
     }
+    @GetMapping("/getUserInfo")
+    public Result<AuthUserDTO> getUserInfo(@RequestBody AuthUserDTO authUserDTO){
+        log.info("查询用户信息,参数为{}",authUserDTO);
+        try {
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "用户名称不能为空");
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.authUserDTOtoBO(authUserDTO);
+            AuthUserBO bo = authUserDomainService.getUserInfo(authUserBO);
+            AuthUserDTO dto = AuthUserDTOConverter.INSTANCE.authUserBOtoDTO(bo);
+            return Result.ok(dto);
+
+        }catch (Exception e){
+            log.error("查询用户信息失败,异常信息为{}",e);
+            return Result.fail(e.getMessage());
+        }
+
+    }
+
+
+    /**
+     * 用户退出
+     */
+    @RequestMapping("logOut")
+    public Result logOut(@RequestParam String userName) {
+        try {
+            log.info("UserController.logOut.userName:{}", userName);
+            Preconditions.checkArgument(!StringUtils.isBlank(userName), "用户名不能为空");
+            StpUtil.logout(userName);
+            return Result.ok();
+        } catch (Exception e) {
+            log.error("UserController.logOut.error:{}", e.getMessage(), e);
+            return Result.fail("用户登出失败");
+        }
+    }
 
     @DeleteMapping("/delete")
     public Result<Boolean> delete(@RequestBody AuthUserDTO authUserDTO){
-        log.info("更新用户信息,参数为{}",authUserDTO);
+        log.info("删除用户信息,参数为{}",authUserDTO);
         try {
             Preconditions.checkArgument(authUserDTO.getId() != null, "用户id不能为空");
 
@@ -113,16 +143,17 @@ public class UserController {
 
 
 
-    // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&password=123456
     @RequestMapping("doLogin")
-    public SaResult doLogin(String username, String password) {
-        // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对
-        if("zhang".equals(username) && "123456".equals(password)) {
-            StpUtil.login(10001);
-            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-            return SaResult.data(tokenInfo);
+    public Result<SaTokenInfo> doLogin(@RequestParam("validCode") String validCode) {
+        try {
+            Preconditions.checkArgument(!StringUtils.isBlank(validCode), "验证码不能为空");
+            SaTokenInfo tokenInfo = authUserDomainService.doLogin(validCode);
+            return Result.ok(tokenInfo);
+        }catch (Exception e){
+            log.error("登录失败,异常信息为{}",e);
+            return Result.fail(e.getMessage());
         }
-        return SaResult.error("登录失败");
+
     }
 
         // 查询登录状态，浏览器访问： http://localhost:8081/user/isLogin
