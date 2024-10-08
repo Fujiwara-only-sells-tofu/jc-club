@@ -35,6 +35,11 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+        </dependency>
+        <dependency>
             <groupId>com.jcclub</groupId>
             <artifactId>jc-club-auth-infra</artifactId>
             <version>1.0-SNAPSHOT</version>
