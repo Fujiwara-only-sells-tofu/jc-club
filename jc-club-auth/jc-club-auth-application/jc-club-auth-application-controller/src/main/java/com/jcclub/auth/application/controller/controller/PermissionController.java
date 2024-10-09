@@ -10,6 +10,7 @@ import com.jcclub.auth.domain.entity.AuthPermissionBO;
 import com.jcclub.auth.domain.service.AuthPermissionDomainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class PermissionController {
     /**
      * 新增权限
      */
-    @RequestMapping("add")
+    @PostMapping("add")
     public Result<Boolean> add(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {
@@ -52,7 +53,7 @@ public class PermissionController {
     /**
      * 修改权限
      */
-    @RequestMapping("update")
+    @PostMapping("update")
     public Result<Boolean> update(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {
@@ -70,7 +71,7 @@ public class PermissionController {
     /**
      * 删除权限
      */
-    @RequestMapping("delete")
+    @PostMapping("delete")
     public Result<Boolean> delete(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {

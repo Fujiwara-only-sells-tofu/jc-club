@@ -73,7 +73,7 @@ public class SubjectController {
      * @Date: 2024-10-01 14:28:59
      */
 
-    @GetMapping("/getSubjectPage")
+    @PostMapping("/getSubjectPage")
     public Result<PageResult<SubjectInfoDTO>> getSubjectPage(@RequestBody SubjectPageQuery query) {
         log.info("分页信息：{}", query);
         //DOTO 更换分页对象，重写分页查询
@@ -100,7 +100,7 @@ public class SubjectController {
      * @Date: 2024-10-01 14:29:14
      */
 
-    @GetMapping("/querySubjectInfo")
+    @PostMapping("/querySubjectInfo")
     public Result<SubjectInfoDTO> querySubjectInfo(@RequestBody SubjectInfoDTO subjectInfoDTO) {
         log.info("查询的信息：{}", subjectInfoDTO);
         try {

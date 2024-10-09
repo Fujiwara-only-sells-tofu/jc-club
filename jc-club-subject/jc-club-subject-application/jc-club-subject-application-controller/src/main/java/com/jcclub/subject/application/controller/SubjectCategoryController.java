@@ -54,7 +54,7 @@ public class SubjectCategoryController {
     *
     * 查询一级分类
     * */
-    @GetMapping("/queryPrimaryCategory")
+    @PostMapping("/queryPrimaryCategory")
     public Result<List<SubjectCategoryDTO>> queryPrimaryCategory(@RequestBody SubjectCategoryDTO subjectCategoryDTO){
         log.info("查询一级分类信息");
 
@@ -73,11 +73,11 @@ public class SubjectCategoryController {
     /*
     * 查询二级分类
     * */
-    @GetMapping("/queryCategoryByPrimary")
+    @PostMapping("/queryCategoryByPrimary")
     public Result<List<SubjectCategoryDTO>> queryCategoryByPrimary(@RequestBody SubjectCategoryDTO subjectCategoryDTO){
         log.info("查询一级分类下分类信息",subjectCategoryDTO);
         try {
-            Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "id不能为空");
+            Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "分类id不能为空");
 
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToCategoryBO(subjectCategoryDTO);
 
@@ -94,7 +94,7 @@ public class SubjectCategoryController {
     /*
     * 更新分类
     * */
-    @PutMapping("/update")
+    @PostMapping("/update")
     public Result<Boolean> update(@RequestBody SubjectCategoryDTO subjectCategoryDTO){
         log.info("更新分类信息",subjectCategoryDTO);
         try {
@@ -118,7 +118,7 @@ public class SubjectCategoryController {
      * @Date: 2024-09-29 09:09:41
      */
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public Result<Boolean> deleteById(@RequestBody SubjectCategoryDTO subjectCategoryDTO){
         log.info("删除分类信息",subjectCategoryDTO);
         try {
@@ -138,7 +138,7 @@ public class SubjectCategoryController {
     /**
      * 查询分类及标签一次性
      */
-    @GetMapping("/queryCategoryAndLabel")
+    @PostMapping("/queryCategoryAndLabel")
     public Result<List<SubjectCategoryDTO>> queryCategoryAndLabel(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
             if (log.isInfoEnabled()) {

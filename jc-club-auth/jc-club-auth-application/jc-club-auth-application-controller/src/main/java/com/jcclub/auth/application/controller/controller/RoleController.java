@@ -43,7 +43,7 @@ public class RoleController {
     }
 
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public Result<Boolean> update(@RequestBody AuthRoleDTO authRoleDTO){
         try {
             log.info("更新角色{}", authRoleDTO);
@@ -57,7 +57,7 @@ public class RoleController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public Result<Boolean> delete(@RequestBody AuthRoleDTO authRoleDTO){
         try {
             log.info("删除角色{}", authRoleDTO);

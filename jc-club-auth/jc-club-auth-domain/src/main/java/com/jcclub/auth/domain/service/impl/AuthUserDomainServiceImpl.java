@@ -73,10 +73,10 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
             authUser.setPassword(SaSecureUtil.md5BySalt(authUser.getPassword(), salt));
         }
         if (StringUtils.isBlank(authUser.getAvatar())) {
-            authUser.setAvatar("http://192.168.174.100:9000/user/icon");
+            authUser.setAvatar("http://192.168.174.100:9000/user/icon/touxiang2.jpg");
         }
         if (StringUtils.isBlank(authUser.getNickName())) {
-            authUser.setNickName("鸡翅粉丝");
+            authUser.setNickName("吴彦祖分祖");
         }
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
         boolean result = authUserService.save(authUser);
@@ -111,14 +111,16 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     @Override
     public Boolean update(AuthUserBO authUserBO) {
         //先查出来实体判断状态
-        AuthUser user = authUserService.getById(authUserBO.getId());
+        AuthUser user = authUserService.lambdaQuery().eq(AuthUser::getUserName, authUserBO.getUserName()).one();
         if (user.getStatus() == AuthUserStatusEnum.CLOSE.getCode()) {
             log.error("用户状态不正确");
             throw new RuntimeException("用户状态为禁用，不能修改！");
         }
         AuthUser authUser = AuthUserBOConverter.INSTANCE.authUserBOtoEntity(authUserBO);
+        authUser.setId(user.getId());
         boolean result = authUserService.updateById(authUser);
         //TODO 有任何更新要和缓存进行同步
+
         return result;
     }
 
@@ -144,6 +146,9 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
             authUserRoleService.updateById(one);
         }
         boolean result = authUserService.updateById(authUser);
+        //要从redis里面删除
+        String roleKey = redisUtil.buildKey(authRolePrefix, authUser.getUserName());
+        redisUtil.del(roleKey);
         return result;
     }
 

@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class FIleInfo {
+public class FileInfo {
 
     /**
      * 文件名

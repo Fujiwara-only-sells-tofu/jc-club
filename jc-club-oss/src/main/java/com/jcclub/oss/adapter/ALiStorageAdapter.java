@@ -1,6 +1,6 @@
 package com.jcclub.oss.adapter;
 
-import com.jcclub.oss.entity.FIleInfo;
+import com.jcclub.oss.entity.FileInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,7 +36,7 @@ public class ALiStorageAdapter implements StorageAdapter {
     }
 
     @Override
-    public List<FIleInfo> getAllFile(String bucket) {
+    public List<FileInfo> getAllFile(String bucket) {
         return Collections.emptyList();
     }
 

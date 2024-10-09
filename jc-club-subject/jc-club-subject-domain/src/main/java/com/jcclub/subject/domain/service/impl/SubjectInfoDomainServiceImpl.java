@@ -91,10 +91,13 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         // 查询 info 表中所有符合条件的 SubjectInfo
         List<SubjectInfo> subjectInfos = subjectInfoService.listByIds(subjectIds);
 
-        // 进行难度过滤
-        List<SubjectInfo> filteredInfos = subjectInfos.stream()
-                .filter(subjectInfo -> subjectInfo.getSubjectDifficult().equals(query.getSubjectDifficult()))
-                .collect(Collectors.toList());
+        List<SubjectInfo> filteredInfos = subjectInfos;
+        if(query.getSubjectDifficult()!=null){
+            // 进行难度过滤
+            filteredInfos = subjectInfos.stream()
+                    .filter(subjectInfo -> subjectInfo.getSubjectDifficult().equals(query.getSubjectDifficult()))
+                    .collect(Collectors.toList());
+        }
 
         // 根据过滤后的数据进行分页
         int totalSize = filteredInfos.size();

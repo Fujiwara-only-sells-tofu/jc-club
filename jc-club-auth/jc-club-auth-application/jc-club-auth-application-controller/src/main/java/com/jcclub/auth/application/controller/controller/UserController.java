@@ -69,11 +69,11 @@ public class UserController {
      * @Date: 2024-10-04 15:22:42
      */
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public Result<Boolean> update(@RequestBody AuthUserDTO authUserDTO){
         log.info("更新用户信息,参数为{}",authUserDTO);
         try {
-            Preconditions.checkArgument(authUserDTO.getId() != null, "用户id不能为空");
+            Preconditions.checkArgument(authUserDTO.getUserName() != null, "用户名称不能为空");
 
             AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.authUserDTOtoBO(authUserDTO);
             Boolean result= authUserDomainService.update(authUserBO);
@@ -85,7 +85,7 @@ public class UserController {
         }
 
     }
-    @GetMapping("/getUserInfo")
+    @PostMapping("/getUserInfo")
     public Result<AuthUserDTO> getUserInfo(@RequestBody AuthUserDTO authUserDTO){
         log.info("查询用户信息,参数为{}",authUserDTO);
         try {
@@ -119,7 +119,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public Result<Boolean> delete(@RequestBody AuthUserDTO authUserDTO){
         log.info("删除用户信息,参数为{}",authUserDTO);
         try {

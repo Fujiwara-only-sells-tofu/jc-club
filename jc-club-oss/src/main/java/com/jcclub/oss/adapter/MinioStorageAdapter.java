@@ -1,9 +1,7 @@
 package com.jcclub.oss.adapter;
 
-import com.jcclub.oss.config.MinioConfig;
-import com.jcclub.oss.entity.FIleInfo;
+import com.jcclub.oss.entity.FileInfo;
 import com.jcclub.oss.utils.MinioUtil;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,19 +17,21 @@ import java.util.List;
  * @Description: 必须描述类做什么事情, 实现什么功能
  */
 
+
 public class MinioStorageAdapter implements StorageAdapter {
 
 
     @Resource
-    private  MinioUtil minioUtil;
+    private MinioUtil minioUtil;
 
-    @Resource
-    private  MinioConfig minioConfig;
-
-
+    /**
+     * minioUrl
+     */
+    @Value("${minio.url}")
+    private String url;
 
     @Override
-    @SneakyThrows //在编译的时候抛出异常
+    @SneakyThrows
     public void createBucket(String bucket) {
         minioUtil.createBucket(bucket);
     }
@@ -40,10 +40,10 @@ public class MinioStorageAdapter implements StorageAdapter {
     @SneakyThrows
     public void uploadFile(MultipartFile uploadFile, String bucket, String objectName) {
         minioUtil.createBucket(bucket);
-        if(objectName != null){
-            minioUtil.uploadFile(uploadFile.getInputStream(),bucket,objectName+"/"+uploadFile.getName());
-        }else {
-            minioUtil.uploadFile(uploadFile.getInputStream(),bucket,uploadFile.getName());
+        if (objectName != null) {
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucket, objectName + "/" + uploadFile.getOriginalFilename());
+        } else {
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucket, uploadFile.getOriginalFilename());
         }
     }
 
@@ -55,14 +55,14 @@ public class MinioStorageAdapter implements StorageAdapter {
 
     @Override
     @SneakyThrows
-    public List<FIleInfo> getAllFile(String bucket) {
+    public List<FileInfo> getAllFile(String bucket) {
         return minioUtil.getAllFile(bucket);
     }
 
     @Override
     @SneakyThrows
     public InputStream downLoad(String bucket, String objectName) {
-        return minioUtil.downLoad(bucket,objectName);
+        return minioUtil.downLoad(bucket, objectName);
     }
 
     @Override
@@ -74,13 +74,13 @@ public class MinioStorageAdapter implements StorageAdapter {
     @Override
     @SneakyThrows
     public void deleteObject(String bucket, String objectName) {
-        minioUtil.deleteObject(bucket,objectName);
+        minioUtil.deleteObject(bucket, objectName);
     }
 
     @Override
     @SneakyThrows
     public String getUrl(String bucket, String objectName) {
-        return minioConfig.getUrl() + "/" + bucket + "/" + objectName;
+        return url + "/" + bucket + "/" + objectName;
     }
 
 }

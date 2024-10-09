@@ -42,7 +42,7 @@ public class SubjectLabelController {
         }
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public Result<Boolean> update(@RequestBody SubjectLabelDTO subjectLabelDTO) {
         log.info("subjectLabelDTO:{}", subjectLabelDTO);
         try {
@@ -56,7 +56,7 @@ public class SubjectLabelController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public Result<Boolean> delete(@RequestBody SubjectLabelDTO subjectLabelDTO) {
         log.info("subjectLabelDTO:{}", subjectLabelDTO);
         try {
@@ -71,7 +71,7 @@ public class SubjectLabelController {
     }
 
 
-    @GetMapping("/queryLabelByCategoryId")
+    @PostMapping("/queryLabelByCategoryId")
     public Result<List<SubjectLabelDTO>> queryLabelByCategoryId(@RequestBody SubjectLabelDTO subjectLabelDTO) {
         log.info("subjectLabelDTO:{}", subjectLabelDTO);
         try {
