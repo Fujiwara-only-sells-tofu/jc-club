@@ -10,7 +10,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-08T10:49:46+0800",
+    date = "2024-10-12T17:28:57+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_412 (Amazon.com Inc.)"
 )
 public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
@@ -31,13 +31,13 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         subjectInfoBO.setSubjectScore( subjectInfoDTO.getSubjectScore() );
         subjectInfoBO.setSubjectParse( subjectInfoDTO.getSubjectParse() );
         subjectInfoBO.setSubjectAnswer( subjectInfoDTO.getSubjectAnswer() );
-        List<Integer> list = subjectInfoDTO.getCategoryIds();
+        List<Long> list = subjectInfoDTO.getCategoryIds();
         if ( list != null ) {
-            subjectInfoBO.setCategoryIds( new ArrayList<Integer>( list ) );
+            subjectInfoBO.setCategoryIds( new ArrayList<Long>( list ) );
         }
-        List<Integer> list1 = subjectInfoDTO.getLabelIds();
+        List<Long> list1 = subjectInfoDTO.getLabelIds();
         if ( list1 != null ) {
-            subjectInfoBO.setLabelIds( new ArrayList<Integer>( list1 ) );
+            subjectInfoBO.setLabelIds( new ArrayList<Long>( list1 ) );
         }
         List<String> list2 = subjectInfoDTO.getLabelName();
         if ( list2 != null ) {
@@ -46,6 +46,13 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         subjectInfoBO.setOptionList( subjectAnswerDTOListToSubjectAnswerBOList( subjectInfoDTO.getOptionList() ) );
         subjectInfoBO.setCategoryId( subjectInfoDTO.getCategoryId() );
         subjectInfoBO.setLabelId( subjectInfoDTO.getLabelId() );
+        subjectInfoBO.setCreateUser( subjectInfoDTO.getCreateUser() );
+        subjectInfoBO.setCreateUserAvatar( subjectInfoDTO.getCreateUserAvatar() );
+        subjectInfoBO.setSubjectCount( subjectInfoDTO.getSubjectCount() );
+        subjectInfoBO.setLiked( subjectInfoDTO.getLiked() );
+        subjectInfoBO.setLikedCount( subjectInfoDTO.getLikedCount() );
+        subjectInfoBO.setNextSubjectId( subjectInfoDTO.getNextSubjectId() );
+        subjectInfoBO.setLastSubjectId( subjectInfoDTO.getLastSubjectId() );
 
         return subjectInfoBO;
     }
@@ -66,13 +73,13 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         subjectInfoDTO.setSubjectScore( subjectInfoBO.getSubjectScore() );
         subjectInfoDTO.setSubjectParse( subjectInfoBO.getSubjectParse() );
         subjectInfoDTO.setSubjectAnswer( subjectInfoBO.getSubjectAnswer() );
-        List<Integer> list = subjectInfoBO.getCategoryIds();
+        List<Long> list = subjectInfoBO.getCategoryIds();
         if ( list != null ) {
-            subjectInfoDTO.setCategoryIds( new ArrayList<Integer>( list ) );
+            subjectInfoDTO.setCategoryIds( new ArrayList<Long>( list ) );
         }
-        List<Integer> list1 = subjectInfoBO.getLabelIds();
+        List<Long> list1 = subjectInfoBO.getLabelIds();
         if ( list1 != null ) {
-            subjectInfoDTO.setLabelIds( new ArrayList<Integer>( list1 ) );
+            subjectInfoDTO.setLabelIds( new ArrayList<Long>( list1 ) );
         }
         List<String> list2 = subjectInfoBO.getLabelName();
         if ( list2 != null ) {
@@ -81,6 +88,13 @@ public class SubjectInfoDTOConverterImpl implements SubjectInfoDTOConverter {
         subjectInfoDTO.setOptionList( subjectAnswerBOListToSubjectAnswerDTOList( subjectInfoBO.getOptionList() ) );
         subjectInfoDTO.setCategoryId( subjectInfoBO.getCategoryId() );
         subjectInfoDTO.setLabelId( subjectInfoBO.getLabelId() );
+        subjectInfoDTO.setCreateUser( subjectInfoBO.getCreateUser() );
+        subjectInfoDTO.setCreateUserAvatar( subjectInfoBO.getCreateUserAvatar() );
+        subjectInfoDTO.setSubjectCount( subjectInfoBO.getSubjectCount() );
+        subjectInfoDTO.setLiked( subjectInfoBO.getLiked() );
+        subjectInfoDTO.setLikedCount( subjectInfoBO.getLikedCount() );
+        subjectInfoDTO.setNextSubjectId( subjectInfoBO.getNextSubjectId() );
+        subjectInfoDTO.setLastSubjectId( subjectInfoBO.getLastSubjectId() );
 
         return subjectInfoDTO;
     }

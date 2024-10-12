@@ -1,8 +1,12 @@
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\entity\PageResult.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\enums\ResultCodeEnum.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\entity\Result.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\context\LoginContextHolder.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\entity\PageInfo.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\enums\SubjectInfoTypeEnum.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\enums\CategoryTypeEnum.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\enums\IsDeletedFlagEnum.java
 E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\entity\SubjectPageQuery.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\enums\SubjectLikedStatusEnum.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\utils\IdWorkerUtil.java
+E:\Java\SpringCloud编写文件\jc-club\jc-club-subject\jc-club-subject-common\src\main\java\com\jcclub\subject\common\utils\LoginUtil.java

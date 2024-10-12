@@ -5,7 +5,7 @@ import com.google.common.base.Preconditions;
 
 import com.jcclub.auth.application.controller.convert.AuthRolePermissionDTOConverter;
 import com.jcclub.auth.application.controller.dto.AuthRolePermissionDTO;
-import com.jcclub.auth.common.entity.Result;
+import com.jcclub.auth.entity.Result;
 import com.jcclub.auth.domain.entity.AuthRolePermissionBO;
 import com.jcclub.auth.domain.service.AuthRolePermissionDomainService;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * 角色权限controller

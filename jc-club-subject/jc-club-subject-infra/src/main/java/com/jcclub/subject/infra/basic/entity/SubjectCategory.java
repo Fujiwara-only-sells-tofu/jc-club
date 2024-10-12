@@ -2,8 +2,14 @@ package com.jcclub.subject.infra.basic.entity;
 
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -16,11 +22,15 @@ import java.io.Serializable;
 
 
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("subject_category")
 public class SubjectCategory implements Serializable {
-    private static final long serialVersionUID = 611373376497458601L;
+    private static final long serialVersionUID = 1L;
 /**
      * 主键
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 /**
      * 分类名称
@@ -45,7 +55,7 @@ public class SubjectCategory implements Serializable {
 /**
      * 创建时间
      */
-    private Date createdTime;
+    private LocalDateTime createdTime;
 /**
      * 更新人
      */

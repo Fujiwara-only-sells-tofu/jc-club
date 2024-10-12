@@ -1,7 +1,7 @@
 package com.jcclub.auth.application.controller.convert;
 
-import com.jcclub.auth.application.controller.dto.AuthUserDTO;
 import com.jcclub.auth.domain.entity.AuthUserBO;
+import com.jcclub.auth.entity.AuthUserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

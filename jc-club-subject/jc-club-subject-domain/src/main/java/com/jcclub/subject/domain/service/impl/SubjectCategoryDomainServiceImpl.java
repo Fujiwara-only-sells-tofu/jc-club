@@ -2,12 +2,15 @@ package com.jcclub.subject.domain.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.jcclub.subject.common.enums.IsDeletedFlagEnum;
 import com.jcclub.subject.domain.convert.SubjectCategoryConverter;
 import com.jcclub.subject.domain.convert.SubjectLabelConverter;
 import com.jcclub.subject.domain.entity.SubjectCategoryBO;
 import com.jcclub.subject.domain.entity.SubjectLabelBO;
 import com.jcclub.subject.domain.service.SubjectCategoryDomainService;
+import com.jcclub.subject.domain.utils.CacheUtil;
 import com.jcclub.subject.infra.basic.entity.SubjectCategory;
 import com.jcclub.subject.infra.basic.entity.SubjectLabel;
 import com.jcclub.subject.infra.basic.entity.SubjectMapping;
@@ -17,11 +20,11 @@ import com.jcclub.subject.infra.basic.service.ISubjectMappingService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 
@@ -37,6 +40,9 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     private final ISubjectLabelService subjectLabelService;
 
     private final ThreadPoolExecutor labelThreadPool;
+
+    private final CacheUtil cacheUtil;
+
 
     @Override
     public void add(SubjectCategoryBO subjectCategoryBO) {
@@ -121,9 +127,17 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     @SneakyThrows
     public List<SubjectCategoryBO> queryCategoryAndLabel(SubjectCategoryBO subjectCategoryBO) {
-        //查询当前分类下所有的子分类
+
+        Long id = subjectCategoryBO.getId();
+        //构建本地缓存的key
+        String cacheKey = "categoryAndLabel." + subjectCategoryBO.getId();
+        List<SubjectCategoryBO> subjectCategoryBOS = cacheUtil.getResult(cacheKey, SubjectCategoryBO.class, (key) -> getSubjectCategoryBOS(id));
+        return subjectCategoryBOS;
+    }
+
+    private List<SubjectCategoryBO> getSubjectCategoryBOS(Long categoryId) {
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.lambdaQuery()
-                .eq(SubjectCategory::getParentId, subjectCategoryBO.getId())
+                .eq(SubjectCategory::getParentId, categoryId)
                 .eq(SubjectCategory::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
                 .list();
         if (log.isInfoEnabled()) {
@@ -131,25 +145,18 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
                     JSON.toJSONString(subjectCategoryList));
         }
         List<SubjectCategoryBO> boList = SubjectCategoryConverter.INSTANCE.convertToCategoryBOList(subjectCategoryList);
-
-        List<FutureTask<Map<Long, List<SubjectLabelBO>>>> futureTaskList = new LinkedList<>();
-
-        //线程池并发调用
-        Map<Long,List<SubjectLabelBO>> map =new HashMap<>();
-        boList.forEach(bo -> {
-            FutureTask<Map<Long,List<SubjectLabelBO>>> futureTask = new FutureTask<>(()->
-                    getLabelBOList(bo));
-            futureTaskList.add(futureTask);
-            labelThreadPool.submit(futureTask);
-        });
-
-        for (FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask : futureTaskList) {
-            Map<Long, List<SubjectLabelBO>> resultMap = futureTask.get();
-            if(CollUtil.isEmpty(resultMap)){
-                continue;
+        Map<Long, List<SubjectLabelBO>> map = new HashMap<>();
+        List<CompletableFuture<Map<Long, List<SubjectLabelBO>>>> completableFutureList = boList.stream().map(bo ->
+                        CompletableFuture.supplyAsync(() -> getLabelBOList(bo), labelThreadPool))
+                .collect(Collectors.toList());
+        completableFutureList.forEach(future -> {
+            try {
+                Map<Long, List<SubjectLabelBO>> resultMap = future.get();
+                map.putAll(resultMap);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            map.putAll(resultMap);
-        }
+        });
         boList.forEach(bo -> {
             bo.setLabelBOList(map.get(bo.getId()));
         });
@@ -158,6 +165,10 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     }
 
     private Map<Long, List<SubjectLabelBO>> getLabelBOList(SubjectCategoryBO bo) {
+        if (log.isInfoEnabled()) {
+            log.info("getLabelBOList :{}", JSON.toJSONString(bo));
+        }
+        log.info("当前线程是：{}", Thread.currentThread().getName());
 
         Map<Long, List<SubjectLabelBO>> labelMap = new HashMap<>();
 

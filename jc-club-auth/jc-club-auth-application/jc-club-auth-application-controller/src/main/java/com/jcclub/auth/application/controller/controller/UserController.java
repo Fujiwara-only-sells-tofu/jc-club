@@ -2,20 +2,16 @@ package com.jcclub.auth.application.controller.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.dev33.satoken.util.SaResult;
-import cn.hutool.core.collection.CollUtil;
 import com.google.common.base.Preconditions;
 import com.jcclub.auth.application.controller.convert.AuthUserDTOConverter;
-import com.jcclub.auth.application.controller.dto.AuthUserDTO;
-import com.jcclub.auth.common.entity.Result;
+import com.jcclub.auth.entity.AuthUserDTO;
+import com.jcclub.auth.entity.Result;
 import com.jcclub.auth.domain.entity.AuthUserBO;
 import com.jcclub.auth.domain.service.AuthUserDomainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @ClassName：UserController
@@ -36,7 +32,7 @@ public class UserController {
     /**
      * @Description: 注册用户
      * @data:[authUserDTO]
-     * @return: com.jcclub.auth.common.entity.Result<java.lang.Boolean>
+     * @return: com.jcclub.auth.entity.Result<java.lang.Boolean>
      * @Author: ZCY
      * @Date: 2024-10-04 14:17:33
      */
@@ -64,7 +60,7 @@ public class UserController {
     /**
      * @Description: 更新用户信息
      * @data:[authUserDTO]
-     * @return: com.jcclub.auth.common.entity.Result<java.lang.Boolean>
+     * @return: com.jcclub.auth.entity.Result<java.lang.Boolean>
      * @Author: ZCY
      * @Date: 2024-10-04 15:22:42
      */

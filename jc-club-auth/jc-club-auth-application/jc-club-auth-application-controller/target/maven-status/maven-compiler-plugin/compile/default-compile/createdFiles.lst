@@ -11,7 +11,6 @@ com\jcclub\auth\application\controller\controller\PermissionController.class
 com\jcclub\auth\application\controller\controller\RolePermissionController.class
 com\jcclub\auth\application\controller\dto\AuthRolePermissionDTO.class
 com\jcclub\auth\application\controller\convert\AuthRoleDTOConverterImpl.class
-com\jcclub\auth\application\controller\dto\AuthUserDTO.class
 com\jcclub\auth\application\controller\convert\AuthPermissionDTOConverterImpl.class
 com\jcclub\auth\application\controller\convert\AuthRoleDTOConverter.class
 com\jcclub\auth\application\controller\convert\AuthUserDTOConverterImpl.class

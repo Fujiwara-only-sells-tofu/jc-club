@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-08T10:47:02+0800",
+    date = "2024-10-09T21:13:33+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_412 (Amazon.com Inc.)"
 )
 public class AuthRoleDTOConverterImpl implements AuthRoleDTOConverter {
@@ -18,10 +18,6 @@ public class AuthRoleDTOConverterImpl implements AuthRoleDTOConverter {
         }
 
         AuthRoleBO authRoleBO = new AuthRoleBO();
-
-        authRoleBO.setId( authRoleDTO.getId() );
-        authRoleBO.setRoleName( authRoleDTO.getRoleName() );
-        authRoleBO.setRoleKey( authRoleDTO.getRoleKey() );
 
         return authRoleBO;
     }

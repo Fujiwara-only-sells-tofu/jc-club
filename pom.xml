@@ -8,9 +8,7 @@
     <artifactId>jc-club</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <modules>
-        <module>jc-club-wx</module>
-    </modules>
+
 
 
     <properties>

@@ -7,6 +7,7 @@ import com.jcclub.subject.application.convert.SubjectLabelDTOConverter;
 import com.jcclub.subject.application.dto.SubjectCategoryDTO;
 import com.jcclub.subject.application.dto.SubjectLabelDTO;
 import com.jcclub.subject.common.entity.Result;
+import com.jcclub.subject.common.utils.LoginUtil;
 import com.jcclub.subject.domain.entity.SubjectCategoryBO;
 import com.jcclub.subject.domain.service.SubjectCategoryDomainService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -145,6 +148,7 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.queryCategoryAndLabel.dto:{}"
                         , JSON.toJSONString(subjectCategoryDTO));
             }
+            String loginId = LoginUtil.getLoginId();
             Preconditions.checkNotNull(subjectCategoryDTO.getId(), "分类id不能为空");
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.
                     convertDtoToCategoryBO(subjectCategoryDTO);

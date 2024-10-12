@@ -1,12 +1,12 @@
 package com.jcclub.auth.application.controller.convert;
 
-import com.jcclub.auth.application.controller.dto.AuthUserDTO;
 import com.jcclub.auth.domain.entity.AuthUserBO;
+import com.jcclub.auth.entity.AuthUserDTO;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-08T10:47:02+0800",
+    date = "2024-10-09T21:13:33+0800",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_412 (Amazon.com Inc.)"
 )
 public class AuthUserDTOConverterImpl implements AuthUserDTOConverter {

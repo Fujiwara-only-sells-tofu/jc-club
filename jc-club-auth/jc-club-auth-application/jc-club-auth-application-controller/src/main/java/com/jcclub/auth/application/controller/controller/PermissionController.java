@@ -5,9 +5,9 @@ import com.google.common.base.Preconditions;
 
 import com.jcclub.auth.application.controller.convert.AuthPermissionDTOConverter;
 import com.jcclub.auth.application.controller.dto.AuthPermissionDTO;
-import com.jcclub.auth.common.entity.Result;
 import com.jcclub.auth.domain.entity.AuthPermissionBO;
 import com.jcclub.auth.domain.service.AuthPermissionDomainService;
+import com.jcclub.auth.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;

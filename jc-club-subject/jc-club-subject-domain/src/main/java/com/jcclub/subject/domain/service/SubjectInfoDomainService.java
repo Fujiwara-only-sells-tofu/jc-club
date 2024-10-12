@@ -3,6 +3,9 @@ package com.jcclub.subject.domain.service;
 import com.jcclub.subject.common.entity.PageResult;
 import com.jcclub.subject.common.entity.SubjectPageQuery;
 import com.jcclub.subject.domain.entity.SubjectInfoBO;
+import com.jcclub.subject.infra.basic.entity.SubjectInfoEs;
+
+import java.util.List;
 
 public interface SubjectInfoDomainService {
 
@@ -36,4 +39,24 @@ public interface SubjectInfoDomainService {
      */
 
     SubjectInfoBO querySubjectInfo(SubjectInfoBO subjectInfoBO);
+
+    /**
+     * @Description: 根据关键字进行全文检索
+     * @data:[subjectInfoEs]
+     * @return: com.jcclub.subject.common.entity.PageResult<com.jcclub.subject.infra.basic.entity.SubjectInfoEs>
+     * @Author: ZCY
+     * @Date: 2024-10-11 17:21:36
+     */
+
+    PageResult<SubjectInfoEs> getSubjectPageBySearch(SubjectInfoEs subjectInfoEs);
+
+    /**
+     * @Description: 获取贡献榜信息
+     * @data:[]
+     * @return: java.util.List<com.jcclub.subject.domain.entity.SubjectInfoBO>
+     * @Author: ZCY
+     * @Date: 2024-10-11 20:54:22
+     */
+    
+    List<SubjectInfoBO> getContributeList();
 }
