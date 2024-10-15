@@ -40,4 +40,15 @@ public interface SubjectCategoryDomainService {
      */
 
     List<SubjectCategoryBO> queryCategoryAndLabel(SubjectCategoryBO subjectCategoryBO);
+
+    /**
+    *@Title: queryCategoryByPrimary
+    * @Author: 张辰逸
+    * @Date: 2024-10-14 10:06:03
+    * @Params: [subjectCategoryBO]
+    * @Return: List<SubjectCategoryBO>
+    * @Description: 根据大类查询二级分类信息
+     */
+
+    List<SubjectCategoryBO> queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO);
 }

@@ -52,6 +52,11 @@
         </dependency>
         <dependency>
             <groupId>com.jcclub</groupId>
+            <artifactId>jc-club-subject-application-mq</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcclub</groupId>
             <artifactId>jc-club-subject-infra</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

@@ -1,5 +1,6 @@
 package com.jcclub.subject.application.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jcclub.subject.application.convert.SubjectCategoryDTOConverter;
@@ -84,7 +85,10 @@ public class SubjectCategoryController {
 
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToCategoryBO(subjectCategoryDTO);
 
-            List<SubjectCategoryBO> boList = subjectCategoryDomainService.queryCategory(subjectCategoryBO);
+            List<SubjectCategoryBO> boList = subjectCategoryDomainService.queryCategoryByPrimary(subjectCategoryBO);
+            if(CollUtil.isEmpty(boList)){
+                return Result.ok(new LinkedList<>());
+            }
             List<SubjectCategoryDTO> dtoList = SubjectCategoryDTOConverter.INSTANCE.convertToCategoryDTOList(boList);
             return Result.ok(dtoList);
         }catch (Exception e){

@@ -93,6 +93,20 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
 
 
     @Override
+    public List<SubjectCategoryBO> queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO) {
+        List<SubjectCategory> subjectCategories = subjectCategoryService.lambdaQuery()
+                .eq(SubjectCategory::getParentId, subjectCategoryBO.getParentId())
+                .eq(SubjectCategory::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
+                .eq(SubjectCategory::getCategoryType, subjectCategoryBO.getCategoryType())
+                .list();
+        if(CollUtil.isEmpty(subjectCategories)){
+            return Collections.emptyList();
+        }
+        List<SubjectCategoryBO> boList = SubjectCategoryConverter.INSTANCE.convertToCategoryBOList(subjectCategories);
+        return boList;
+    }
+
+    @Override
     public Boolean update(SubjectCategoryBO subjectCategoryBO) {
         SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE.convertBoToCategory(subjectCategoryBO);
         boolean result = subjectCategoryService.updateById(subjectCategory);

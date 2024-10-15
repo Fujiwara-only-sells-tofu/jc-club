@@ -15,6 +15,8 @@ import com.jcclub.subject.infra.basic.entity.SubjectInfoEs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +38,8 @@ import java.util.List;
 public class SubjectController {
 
     private final SubjectInfoDomainService subjectInfoDomainService;
+
+    private final RocketMQTemplate rocketMQTemplate;
 
     /**
      * @Description:新增题目
@@ -161,6 +165,15 @@ public class SubjectController {
             log.error("获取贡献榜信息失败", e);
             return Result.fail(e.getMessage());
         }
+    }
+
+    /**
+     * 测试mq发送
+     */
+    @PostMapping("/pushMessage")
+    public Result<Boolean> pushMessage(@Param("id") int id) {
+        rocketMQTemplate.convertAndSend("test_topic", "吴彦祖你好" + id);
+        return Result.ok(true);
     }
 
 }

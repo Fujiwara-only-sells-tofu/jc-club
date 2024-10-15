@@ -1,0 +1,4 @@
+com\jcclub\auth\api\UserFeignService.class
+com\jcclub\auth\entity\AuthUserDTO.class
+com\jcclub\auth\entity\Result.class
+com\jcclub\auth\entity\ResultCodeEnum.class
