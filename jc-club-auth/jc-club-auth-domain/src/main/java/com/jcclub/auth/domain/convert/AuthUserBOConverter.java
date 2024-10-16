@@ -5,6 +5,8 @@ import com.jcclub.auth.infra.basic.entity.AuthUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * @ClassName：AuthUserDTOConvert
  * @Author: gouteng
@@ -18,6 +20,8 @@ public interface AuthUserBOConverter {
     AuthUserBOConverter INSTANCE = Mappers.getMapper(AuthUserBOConverter.class);
 
     AuthUserBO authUsertoBO(AuthUser authUser);
+
+    List<AuthUserBO> authUsertoBO(List<AuthUser> authUsers);
 
 
     AuthUser authUserBOtoEntity(AuthUserBO authUserBO);

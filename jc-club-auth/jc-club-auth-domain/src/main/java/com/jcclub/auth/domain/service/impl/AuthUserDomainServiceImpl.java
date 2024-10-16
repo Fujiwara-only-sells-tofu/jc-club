@@ -3,6 +3,7 @@ package com.jcclub.auth.domain.service.impl;
 import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
 import com.jcclub.auth.common.enums.AuthUserStatusEnum;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,8 +121,6 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         AuthUser authUser = AuthUserBOConverter.INSTANCE.authUserBOtoEntity(authUserBO);
         authUser.setId(user.getId());
         boolean result = authUserService.updateById(authUser);
-        //TODO 有任何更新要和缓存进行同步
-
         return result;
     }
 
@@ -177,5 +177,23 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         }
         AuthUserBO bo = AuthUserBOConverter.INSTANCE.authUsertoBO(user);
         return bo;
+    }
+
+
+    @Override
+    public List<AuthUserBO> listUserInfoByIds(List<String> userNameList) {
+        if(CollUtil.isEmpty(userNameList)){
+            return Collections.emptyList();
+        }
+        List<AuthUser> userList = authUserService.lambdaQuery()
+                .in(AuthUser::getUserName, userNameList)
+                .eq(AuthUser::getIsDeleted, IsDeletedFlagEnum.UN_DELETED.getCode())
+                .eq(AuthUser::getStatus, AuthUserStatusEnum.OPEN.getCode())
+                .list();
+        if(CollUtil.isEmpty(userList)){
+            return Collections.emptyList();
+        }
+        List<AuthUserBO> authUserBOList = AuthUserBOConverter.INSTANCE.authUsertoBO(userList);
+        return authUserBOList;
     }
 }

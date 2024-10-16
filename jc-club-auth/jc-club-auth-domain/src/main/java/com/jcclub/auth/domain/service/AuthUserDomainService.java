@@ -4,6 +4,8 @@ package com.jcclub.auth.domain.service;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import com.jcclub.auth.domain.entity.AuthUserBO;
 
+import java.util.List;
+
 public interface AuthUserDomainService {
 
 
@@ -56,4 +58,15 @@ public interface AuthUserDomainService {
      */
 
     AuthUserBO  getUserInfo(AuthUserBO authUserBO);
+
+    /**
+    *@Title: listUserInfoByIds
+    * @Author: 张辰逸
+    * @Date: 2024-10-16 10:52:25
+    * @Params: [userNameList]
+    * @Return: List<AuthUserBO>
+    * @Description: 根据id集合查询用户信息
+     */
+
+    List<AuthUserBO> listUserInfoByIds(List<String> userNameList);
 }

@@ -2,6 +2,7 @@ package com.jcclub.auth.application.controller.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jcclub.auth.application.controller.convert.AuthUserDTOConverter;
 import com.jcclub.auth.entity.AuthUserDTO;
@@ -11,7 +12,10 @@ import com.jcclub.auth.domain.service.AuthUserDomainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @ClassName：UserController
@@ -156,6 +160,24 @@ public class UserController {
     @RequestMapping("isLogin")
     public String isLogin() {
         return "当前会话是否登录：" + StpUtil.isLogin();
+    }
+
+    /**
+     * 批量获取用户信息
+     */
+    @RequestMapping("listByIds")
+    public Result<List<AuthUserDTO>> listUserInfoByIds(@RequestBody List<String> userNameList) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.listUserInfoByIds.dto:{}", JSON.toJSONString(userNameList));
+            }
+            Preconditions.checkArgument(!CollectionUtils.isEmpty(userNameList), "id集合不能为空");
+            List<AuthUserBO> userInfos = authUserDomainService.listUserInfoByIds(userNameList);
+            return Result.ok(AuthUserDTOConverter.INSTANCE.convertBOToDTO(userInfos));
+        } catch (Exception e) {
+            log.error("UserController.listUserInfoByIds.error:{}", e.getMessage(), e);
+            return Result.fail("批量获取用户信息失败");
+        }
     }
 
 }
